@@ -13,7 +13,7 @@ pipeline{
             steps{
                 sh '''
                 echo "npm install"
-                npm install
+                npm install --verbose
                 '''
             }
         }
