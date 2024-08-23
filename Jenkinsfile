@@ -42,6 +42,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Code'){
+            steps{
+                script{
+                    sh 'npm run start'
+                }
+            }
+        }
     }
 
     post {
