@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment{
+        PATH = "${env.PATH}:/home/crawlapps/.nvm/versions/node/v20.12.0/bin"
+    }
+
     stages {
         stage('Check Node.js and npm') {
             steps {
