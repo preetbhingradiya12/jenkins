@@ -7,13 +7,13 @@ pipeline{
 
     stages{
         stage("checkout"){
-            step{
+            steps{
                 checkout scm
             }
         }
 
         stage('Npm install'){
-            step{
+            steps{
                 sh '''
                 echo "npm install"
                 npm install
