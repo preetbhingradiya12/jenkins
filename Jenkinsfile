@@ -1,9 +1,6 @@
 pipeline{
 
     agent any
-    environment {
-        PATH = "/home/crawlapps/.nvm/versions/node/v20.12.0/bin:${PATH}"
-    }
 
     stages{
         stage("checkout"){
