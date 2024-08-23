@@ -2,17 +2,29 @@ pipeline {
     agent any
 
     stages {
+        stage('Check Node.js and npm') {
+            steps {
+                script {
+                    sh 'node -v'
+                    sh 'npm -v'
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'npm install'
+                    retry(3) {
+                        timeout(time: 3, unit: 'MINUTES') {
+                            sh 'npm install --verbose'
+                        }
+                    }
                 }
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run tests using Jest
                 script {
                     sh 'npm test'
                 }
@@ -21,17 +33,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Optional: Add a build step if necessary
-                // e.g., compile code, create artifacts
-                sh 'npm run build'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Optional: Deploy application to a server or a cloud service
-                // This part depends on your deployment strategy
-                echo 'Deploy step is not configured.'
+                script {
+                    sh 'npm run build'
+                }
             }
         }
     }
