@@ -9,15 +9,6 @@ pipeline{
             }
         }
 
-        stage('Npm install'){
-            steps{
-                sh '''
-                echo "npm install"
-                npm install --verbose
-                '''
-            }
-        }
-
         stage('Print Environment') {
             steps { 
                 sh '''
